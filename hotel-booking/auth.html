@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="เข้าสู่ระบบหรือสมัครสมาชิก Docker Hotel เพื่อเริ่มวางแผนการเดินทาง" />
+  <title>เข้าสู่ระบบ / สมัครสมาชิก — Docker Hotel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['IBM Plex Sans Thai', 'sans-serif'] } } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="min-h-screen bg-stone-50 text-stone-800">
+  <header class="border-b border-stone-100 bg-white">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-bold text-teal-600">Docker Hotel</a>
+      <a href="index.html" class="text-sm font-medium text-stone-600 transition hover:text-teal-700">← กลับหน้าแรก</a>
+    </div>
+  </header>
+
+  <main class="mx-auto flex max-w-6xl items-center px-4 py-8 sm:px-6 sm:py-12">
+    <section aria-label="เข้าสู่ระบบหรือสมัครสมาชิก" class="mx-auto grid w-full max-w-5xl overflow-hidden rounded-3xl bg-white shadow-xl shadow-stone-200/70 lg:grid-cols-2">
+      <div class="relative hidden min-h-[650px] overflow-hidden bg-teal-950 text-white lg:block">
+        <img
+          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85"
+          alt="โรงแรมสำหรับการพักผ่อน"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-teal-950/35 to-slate-950/20"></div>
+        <div class="relative flex h-full flex-col justify-between p-10">
+          <a href="index.html" class="text-xl font-bold">Docker <span class="text-teal-200">Hotel</span></a>
+          <div class="max-w-md pb-4">
+            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-200">Your next escape</p>
+            <h1 class="text-4xl font-bold leading-tight">ทริปดี ๆ เริ่มต้นจากที่พักที่ใช่</h1>
+            <p class="mt-4 leading-7 text-white/80">ค้นพบที่พักทั่วไทย แล้วเตรียมตัวออกไปสร้างความทรงจำครั้งใหม่</p>
+            <div class="mt-8 flex items-center gap-3 text-sm text-white/85">
+              <span aria-hidden="true" class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-teal-100">✦</span>
+              <span>พักผ่อนให้เต็มที่ แล้วออกเดินทางในแบบของคุณ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center p-6 sm:p-10 lg:p-12">
+        <div class="w-full max-w-md">
+          <div class="mb-8 lg:hidden">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">Docker Hotel</p>
+            <h1 class="mt-2 text-3xl font-bold">พร้อมออกเดินทางหรือยัง?</h1>
+            <p class="mt-2 text-sm leading-6 text-stone-500">เข้าสู่ระบบหรือสร้างบัญชีเพื่อเริ่มต้น</p>
+          </div>
+          <div class="mb-8 hidden lg:block">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">ยินดีต้อนรับ</p>
+            <h2 class="mt-2 text-3xl font-bold">เริ่มต้นกับ Docker Hotel</h2>
+            <p class="mt-2 text-sm leading-6 text-stone-500">กรอกข้อมูลด้านล่างเพื่อไปต่อ</p>
+          </div>
+
+          <div role="tablist" aria-label="ตัวเลือกบัญชี" class="mb-7 grid grid-cols-2 rounded-xl bg-stone-100 p-1">
+            <button id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="login-panel" class="rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-teal-700 shadow-sm">เข้าสู่ระบบ</button>
+            <button id="signup-tab" type="button" role="tab" aria-selected="false" aria-controls="signup-panel" class="rounded-lg px-4 py-2.5 text-sm font-semibold text-stone-500 transition hover:text-teal-700">สมัครสมาชิก</button>
+          </div>
+
+          <form id="login-panel" role="tabpanel" aria-labelledby="login-tab" class="space-y-5">
+            <div>
+              <label for="login-email" class="mb-1.5 block text-sm font-medium">อีเมล</label>
+              <input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+            </div>
+            <div>
+              <div class="mb-1.5 flex items-center justify-between gap-2">
+                <label for="login-password" class="block text-sm font-medium">รหัสผ่าน</label>
+                <span class="text-xs text-stone-400">ใช้รหัสผ่านที่ตั้งไว้</span>
+              </div>
+              <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="กรอกรหัสผ่าน" required class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+            </div>
+            <button type="submit" class="w-full rounded-xl bg-teal-600 px-5 py-3 font-semibold text-white shadow-lg shadow-teal-600/20 transition hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-500/25">เข้าสู่ระบบ</button>
+          </form>
+
+          <form id="signup-panel" role="tabpanel" aria-labelledby="signup-tab" class="hidden space-y-5">
+            <div>
+              <label for="signup-name" class="mb-1.5 block text-sm font-medium">ชื่อที่ใช้แสดง</label>
+              <input id="signup-name" name="name" type="text" autocomplete="name" placeholder="ชื่อของคุณ" required class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+            </div>
+            <div>
+              <label for="signup-email" class="mb-1.5 block text-sm font-medium">อีเมล</label>
+              <input id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+            </div>
+            <div>
+              <label for="signup-password" class="mb-1.5 block text-sm font-medium">รหัสผ่าน</label>
+              <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="อย่างน้อย 8 ตัวอักษร" required class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+            </div>
+            <div>
+              <label for="signup-confirm-password" class="mb-1.5 block text-sm font-medium">ยืนยันรหัสผ่าน</label>
+              <input id="signup-confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" placeholder="กรอกรหัสผ่านอีกครั้ง" required class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+            </div>
+            <button type="submit" class="w-full rounded-xl bg-teal-600 px-5 py-3 font-semibold text-white shadow-lg shadow-teal-600/20 transition hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-500/25">สร้างบัญชี</button>
+          </form>
+
+          <p id="form-message" role="status" aria-live="polite" class="mt-4 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900"></p>
+          <p class="mt-6 text-center text-xs leading-5 text-stone-400">หน้านี้เป็นตัวอย่างหน้าตาเท่านั้น ยังไม่เชื่อมต่อระบบบัญชีหรือจัดเก็บข้อมูล</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

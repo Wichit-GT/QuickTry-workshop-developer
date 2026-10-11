@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ตรวจสอบการจองและเลือกวิธีชำระเงิน — Docker Hotel" />
+  <title>ชำระเงิน — Docker Hotel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['IBM Plex Sans Thai', 'sans-serif'] } } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-stone-50 text-stone-800">
+  <header class="border-b border-stone-100 bg-white">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-bold text-teal-600">Docker Hotel</a>
+      <a id="back-to-booking" href="booking.html" class="text-sm font-medium text-stone-600 transition hover:text-teal-700">← กลับไปแก้ไขรายละเอียด</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-12">
+    <nav aria-label="เส้นทางนำทาง" class="mb-7 text-sm text-stone-500">
+      <a href="index.html" class="hover:text-teal-700">หน้าแรก</a>
+      <span aria-hidden="true" class="mx-2">/</span>
+      <a id="payment-hotel-link" href="hotel.html" class="hover:text-teal-700">รายละเอียดที่พัก</a>
+      <span aria-hidden="true" class="mx-2">/</span>
+      <span class="text-stone-700">ชำระเงิน</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold sm:text-4xl">เลือกวิธีชำระเงิน</h1>
+    <p class="mt-2 text-stone-500">ตรวจสอบข้อมูลการเข้าพัก แล้วเลือกวิธีชำระเงินที่สะดวก</p>
+    <p id="payment-error" role="alert" class="mt-6 hidden rounded-xl border border-rose-200 bg-rose-50 p-4 text-rose-800"></p>
+
+    <div class="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_380px]">
+      <section class="rounded-3xl border border-stone-100 bg-white p-5 shadow-sm sm:p-8">
+        <h2 class="text-xl font-bold">วิธีชำระเงิน</h2>
+        <p class="mt-1 text-sm text-stone-500">เลือกได้ 1 วิธีสำหรับรายการนี้</p>
+
+        <form id="payment-form" class="mt-6 space-y-4">
+          <label class="flex cursor-pointer items-start gap-4 rounded-2xl border border-stone-200 p-4 transition has-[:checked]:border-teal-500 has-[:checked]:bg-teal-50">
+            <input type="radio" name="payment-method" value="qr" required class="mt-1 h-4 w-4 accent-teal-600" />
+            <span aria-hidden="true" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-100 text-xl text-teal-700">▦</span>
+            <span>
+              <span class="block font-semibold">QR Code ไปยัง YouTube</span>
+              <span class="mt-1 block text-sm leading-6 text-stone-500">สแกนเพื่อเปิดวิดีโอ “เจ้าชายคลองตัน”</span>
+            </span>
+          </label>
+
+          <label class="flex cursor-pointer items-start gap-4 rounded-2xl border border-stone-200 p-4 transition has-[:checked]:border-teal-500 has-[:checked]:bg-teal-50">
+            <input type="radio" name="payment-method" value="pay-at-hotel" class="mt-1 h-4 w-4 accent-teal-600" />
+            <span aria-hidden="true" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-100 text-xl text-teal-700">⌂</span>
+            <span>
+              <span class="block font-semibold">จ่ายตอนเข้าพัก</span>
+              <span class="mt-1 block text-sm leading-6 text-stone-500">ชำระกับที่พักเมื่อเช็กอิน</span>
+            </span>
+          </label>
+
+          <label class="flex cursor-pointer items-start gap-4 rounded-2xl border border-stone-200 p-4 transition has-[:checked]:border-teal-500 has-[:checked]:bg-teal-50">
+            <input type="radio" name="payment-method" value="card" class="mt-1 h-4 w-4 accent-teal-600" />
+            <span aria-hidden="true" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-100 text-xl text-teal-700">▤</span>
+            <span>
+              <span class="block font-semibold">บัตรเครดิต / เดบิต</span>
+              <span class="mt-1 block text-sm leading-6 text-stone-500">เลือกชำระด้วยบัตรในโหมดตัวอย่าง</span>
+            </span>
+          </label>
+
+          <div id="payment-method-details" aria-live="polite" class="min-h-14 rounded-xl bg-stone-50 p-4 text-sm leading-6 text-stone-600">
+            เลือกวิธีชำระเงินเพื่อดูรายละเอียด
+          </div>
+          <section id="youtube-qr-panel" class="hidden rounded-2xl border border-stone-200 p-5 text-center">
+            <h3 class="font-semibold">QR Code สำหรับเปิด YouTube</h3>
+            <p class="mt-1 text-sm leading-6 text-stone-500">สแกนโค้ดเพื่อเปิดลิงก์ที่คุณส่งมา ไม่ใช่ QR สำหรับชำระเงิน</p>
+            <img
+              id="youtube-qr-image"
+              alt="QR Code ลิงก์ไปยังวิดีโอ YouTube เจ้าชายคลองตัน"
+              class="mx-auto mt-4 h-60 w-60 rounded-xl border border-stone-100 bg-white p-2"
+              width="240"
+              height="240"
+              loading="lazy"
+            />
+            <a
+              href="https://www.youtube.com/watch?v=gppmxR0sDz8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-3 inline-block text-sm font-medium text-teal-700 underline underline-offset-4 hover:text-teal-800"
+            >เปิดวิดีโอบน YouTube</a>
+            <p class="mt-2 text-xs text-stone-400">“เจ้าชายคลองตัน” ตามลิงก์วิดีโอที่ส่งมา</p>
+          </section>
+          <section id="card-details" class="hidden rounded-2xl border border-stone-200 p-4 sm:p-5">
+            <h3 class="font-semibold">รายละเอียดบัตรเครดิต / เดบิต</h3>
+            <p class="mt-1 text-xs leading-5 text-amber-800">โหมดตัวอย่างเท่านั้น — ห้ามกรอกข้อมูลบัตรจริง ใช้ข้อมูลทดสอบ เช่น 4242 4242 4242 4242</p>
+            <div class="mt-4 space-y-4">
+              <div>
+                <label for="cardholder-name" class="mb-1.5 block text-sm font-medium">ชื่อบนบัตร</label>
+                <input id="cardholder-name" name="cardholder" type="text" autocomplete="off" placeholder="TUL TEST" disabled class="w-full rounded-xl border border-stone-200 px-4 py-3 uppercase outline-none transition placeholder:normal-case placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+              </div>
+              <div>
+                <label for="card-number" class="mb-1.5 block text-sm font-medium">หมายเลขบัตร (ข้อมูลทดสอบ)</label>
+                <input id="card-number" name="cardNumber" type="text" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="4242 4242 4242 4242" disabled class="w-full rounded-xl border border-stone-200 px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="card-expiry" class="mb-1.5 block text-sm font-medium">วันหมดอายุ</label>
+                  <input id="card-expiry" name="cardExpiry" type="text" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="MM/YY" disabled class="w-full rounded-xl border border-stone-200 px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+                </div>
+                <div>
+                  <label for="card-cvv" class="mb-1.5 block text-sm font-medium">CVV (ตัวอย่าง)</label>
+                  <input id="card-cvv" name="cardCvv" type="password" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="123" disabled class="w-full rounded-xl border border-stone-200 px-4 py-3 outline-none transition placeholder:text-stone-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10" />
+                </div>
+              </div>
+            </div>
+          </section>
+          <p class="text-xs leading-5 text-stone-400">QR ที่แสดงเป็นลิงก์ YouTube ไม่ใช่ QR ชำระเงิน ไม่มีการส่งข้อมูลบัตร และไม่มีการตัดเงินจริง</p>
+          <button id="payment-confirm-button" type="submit" disabled class="w-full rounded-xl bg-teal-600 px-5 py-3.5 font-semibold text-white shadow-lg shadow-teal-600/20 transition hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-500/25 disabled:cursor-not-allowed disabled:opacity-50">
+            ยืนยันวิธีชำระเงิน (ตัวอย่าง)
+          </button>
+        </form>
+      </section>
+
+      <aside class="overflow-hidden rounded-3xl border border-stone-100 bg-white shadow-sm lg:sticky lg:top-6">
+        <img id="payment-hotel-image" src="" alt="" class="aspect-[16/9] w-full object-cover" />
+        <div class="p-5 sm:p-6">
+          <p class="text-sm font-medium text-teal-700"><span id="payment-hotel-city"></span> · <span id="payment-hotel-rating" class="text-amber-500"></span></p>
+          <h2 id="payment-hotel-name" class="mt-1 text-xl font-bold"></h2>
+          <dl class="mt-5 space-y-3 border-t border-stone-100 pt-5 text-sm">
+            <div class="flex justify-between gap-4">
+              <dt class="text-stone-500">ผู้จอง</dt>
+              <dd id="payment-guest-name" class="text-right font-medium"></dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-stone-500">อีเมล</dt>
+              <dd id="payment-guest-email" class="break-all text-right font-medium"></dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-stone-500">วันเข้าพัก</dt>
+              <dd id="payment-stay-dates" class="text-right font-medium"></dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-stone-500">ผู้เข้าพัก</dt>
+              <dd id="payment-guest-count" class="text-right font-medium"></dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-stone-500">จำนวนคืน</dt>
+              <dd id="payment-night-count" class="text-right font-medium"></dd>
+            </div>
+            <div class="flex justify-between gap-4 border-t border-stone-100 pt-4">
+              <dt class="font-semibold">ยอดรวมโดยประมาณ</dt>
+              <dd id="payment-total" class="text-right text-lg font-bold text-teal-700"></dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="payment-dialog" aria-labelledby="payment-dialog-title" class="w-[calc(100%-2rem)] max-w-md rounded-3xl p-0 text-stone-800 shadow-2xl backdrop:bg-stone-950/60">
+    <div class="p-6 text-center sm:p-8">
+      <span aria-hidden="true" class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-3xl text-teal-700">✓</span>
+      <h2 id="payment-dialog-title" class="mt-5 text-2xl font-bold">เลือกวิธีชำระเงินแล้ว</h2>
+      <p class="mt-3 text-sm leading-6 text-stone-500">นี่เป็นการยืนยันตัวเลือกในเดโมเท่านั้น ยังไม่มีการจองหรือชำระเงินจริง</p>
+      <p id="confirmed-payment-method" class="mt-5 rounded-xl bg-stone-50 p-4 font-semibold text-teal-800"></p>
+      <p id="confirmed-card-ending" class="mt-2 hidden text-sm text-stone-500"></p>
+      <button id="close-payment-dialog" type="button" class="mt-6 w-full rounded-xl bg-teal-600 px-5 py-3 font-semibold text-white transition hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-500/25">
+        เสร็จสิ้น
+      </button>
+    </div>
+  </dialog>
+
+  <footer class="mt-10 border-t border-stone-100 bg-white">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm sm:flex-row">
+      <a href="index.html" class="font-bold text-teal-600">Docker Hotel</a>
+      <p class="text-stone-500">© 2026 Docker Hotel · ทำเพื่อการเรียนรู้</p>
+      <a href="about.html" class="font-medium text-stone-600 transition hover:text-teal-600">เกี่ยวกับเรา</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@
       "สระว่ายน้ำ",
       "อาหารเช้า"
     ],
-    "image": "https://loremflickr.com/600/400/resort?lock=12"
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzDwP2bHVE5L30ssQq7uBSFRvplSV9SBGqOzZD0zCRWQ&s=10"
   },
   {
     "id": 2,
@@ -27,7 +27,7 @@
       "WiFi ฟรี",
       "ฟิตเนส"
     ],
-    "image": "https://loremflickr.com/600/400/hotel,city?lock=12"
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuLCIfq7OIBWy6pSIzinEVfgCMaISEdiwGIkI9ZN1KOw&s=10"
   },
   {
     "id": 3,
@@ -41,7 +41,7 @@
       "WiFi ฟรี",
       "วิวภูเขา"
     ],
-    "image": "https://loremflickr.com/600/400/mountain,homestay?lock=13"
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMuYmBdrenR4eKDullt6NSM4EIEu2C80xIVV7LOTDcrR6h0x0Sdd3VhQh_&s=10"
   },
   {
     "id": 4,
@@ -57,7 +57,7 @@
       "สระว่ายน้ำ",
       "สปา"
     ],
-    "image": "https://loremflickr.com/600/400/river,hotel?lock=14"
+    "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 5,
@@ -73,7 +73,7 @@
       "ติดทะเล",
       "อาหารเช้า"
     ],
-    "image": "https://loremflickr.com/600/400/villa,sea?lock=15"
+    "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 6,
@@ -87,6 +87,23 @@
       "WiFi ฟรี",
       "สวน"
     ],
-    "image": "https://loremflickr.com/600/400/garden,guesthouse?lock=8"
+    "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 7,
+    "name": "โรงแรมหรูใจกลางเมือง",
+    "city": "กรุงเทพ",
+    "price": 4500,
+    "oldPrice": 5200,
+    "rating": 5,
+    "reviews": 512,
+    "emoji": "🏨",
+    "amenities": [
+      "WiFi ฟรี",
+      "สระว่ายน้ำ",
+      "ฟิตเนส",
+      "สปา"
+    ],
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80"
   }
 ]

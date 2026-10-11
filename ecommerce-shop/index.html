@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ร้านของเรา — ช้อปง่าย ได้ของดี</title>
+  <title>Docker Shop — ช้อปง่าย ได้ของดี</title>
 
   <!-- Tailwind CSS ผ่าน CDN — ไม่ต้อง build อะไรเลย เปิดไฟล์ก็ใช้ได้ -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,7 +25,28 @@
     /* 👇 โจทย์ 2: การ์ดโปรโมชัน (.promo-card) ยังโล่ง ๆ — เขียน CSS แต่งเองตรงนี้ (ยังไม่ใช้ Tailwind)
        ลองใส่: background (พื้นหลัง), border-radius (มุมโค้ง), padding (ระยะขอบใน), color (สีตัวอักษร) */
     .promo-card {
-      /* เขียน CSS ตรงนี้ */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #fff7ed, #ffedd5);
+      color: #7c2d12;
+      text-align: center;
+      box-shadow: 0 4px 14px rgb(124 45 18 / 8%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .promo-card h4 {
+      margin: 0;
+      color: #c2410c;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .promo-card p {
+      margin: 0;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -45,7 +66,7 @@
   <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-stone-100">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center gap-6">
       <!-- 👇 โจทย์ 1: ลองแก้ชื่อร้านตรงนี้ -->
-      <a href="index.html" class="text-2xl font-bold text-orange-600 shrink-0">ร้านของเรา</a>
+      <a href="index.html" class="text-2xl font-bold text-orange-600 shrink-0">Docker Shop</a>
 
       <!-- ช่องค้นหา (ไอคอนแว่นขยาย ไม่ต้องแก้) -->
       <div class="flex-1 max-w-xl relative hidden sm:block">
@@ -160,7 +181,7 @@
   <footer class="bg-white border-t border-stone-100">
     <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
       <div>
-        <p class="text-lg font-bold text-orange-600 mb-3">ร้านของเรา</p>
+        <p class="text-lg font-bold text-orange-600 mb-3">Docker Shop</p>
         <p class="text-stone-500">ช้อปง่าย ได้ของดี ส่งไวทั่วไทย</p>
       </div>
       <div>
@@ -176,7 +197,7 @@
         <ul class="space-y-2 text-stone-500"><li>Facebook</li><li>Instagram</li><li>TikTok</li></ul>
       </div>
     </div>
-    <p class="text-center text-stone-400 text-xs pb-8">© 2024 ร้านของเรา · ทำเพื่อการเรียนรู้</p>
+    <p class="text-center text-stone-400 text-xs pb-8">© 2024 Docker Shop · ทำเพื่อการเรียนรู้</p>
   </footer>
 
   <!-- ============================================================

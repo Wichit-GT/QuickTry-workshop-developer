@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>จองที่พัก — หาที่พักที่ใช่ทั่วไทย</title>
+  <title>Docker Hotel — หาที่พักที่ใช่ทั่วไทย</title>
 
   <!-- Tailwind CSS ผ่าน CDN — ไม่ต้อง build อะไรเลย -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,11 +25,11 @@
 <body class="bg-stone-50 text-stone-800">
   <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-stone-100">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="text-2xl font-bold text-teal-600">จองที่พัก</a>
-      <nav class="flex items-center gap-6 text-stone-600 font-medium">
-        <a href="index.html" class="hover:text-teal-600">หน้าแรก</a>
+      <a href="index.html" class="text-2xl font-bold text-teal-600">Docker Hotel</a>
+      <nav aria-label="เมนูหลัก" class="flex items-center gap-3 text-sm font-medium text-stone-600 sm:gap-6 sm:text-base">
+        <a href="index.html" class="hidden hover:text-teal-600 sm:inline">หน้าแรก</a>
         <a href="about.html" class="hover:text-teal-600">เกี่ยวกับเรา</a>
-        <button class="bg-teal-600 text-white px-5 py-2 rounded-full hover:bg-teal-700 transition">เข้าสู่ระบบ</button>
+        <a href="auth.html" class="rounded-full bg-teal-600 px-3 py-2 text-white transition hover:bg-teal-700 sm:px-5">เข้าสู่ระบบ</a>
       </nav>
     </div>
   </header>
@@ -37,8 +37,8 @@
   <main>
     <section class="bg-gradient-to-br from-teal-600 to-cyan-600 text-white">
       <div class="max-w-6xl mx-auto px-6 py-16 md:py-24 text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-3">หาที่พักที่ใช่สำหรับคุณ</h2>
-        <p class="text-white/90 text-lg mb-8">รวมโรงแรมและโฮมสเตย์ทั่วไทย จองง่าย ราคาดี</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-3">เที่ยวไหน พักไหนดี?</h2>
+        <p class="text-white/90 text-lg mb-8">ค้นพบที่พักหลากหลายสไตล์ทั่วไทย เลือกง่าย จองไว สบายกระเป๋า</p>
         <div class="bg-white rounded-2xl shadow-lg p-3 flex flex-col md:flex-row gap-3 max-w-3xl mx-auto text-left text-stone-700">
           <div class="flex-1 px-3 py-2">
             <label class="block text-xs text-stone-400">จุดหมาย</label>
@@ -55,8 +55,8 @@
     <div class="max-w-6xl mx-auto px-6">
       <section class="my-10">
         <article>
-          <h4>จองง่าย ไม่มีค่าใช้จ่ายแอบแฝง</h4>
-          <p>ราคาที่เห็น คือราคาที่จ่ายจริง ยกเลิกฟรีทุกที่พัก</p>
+          <h4 class="text-2xl not-italic font-bold text-center">จองง่าย ไม่มีค่าใช้จ่ายแอบแฝง</h4>
+          <p class="text-xl text-center">ราคาที่เห็น คือราคาที่จ่ายจริง ยกเลิกฟรีทุกที่พัก</p>
         </article>
       </section>
       <section class="my-10">
@@ -78,7 +78,7 @@
   <footer class="bg-white border-t border-stone-100">
     <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
       <div>
-        <p class="text-lg font-bold text-teal-600 mb-3">จองที่พัก</p>
+        <p class="text-lg font-bold text-teal-600 mb-3">Docker Hotel</p>
         <p class="text-stone-500">หาที่พักที่ใช่ทั่วไทย จองง่าย ราคาดี</p>
       </div>
       <div>
@@ -94,7 +94,7 @@
         <ul class="space-y-2 text-stone-500"><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul>
       </div>
     </div>
-    <p class="text-center text-stone-400 text-xs pb-8">© 2024 จองที่พัก · ทำเพื่อการเรียนรู้</p>
+    <p class="text-center text-stone-400 text-xs pb-8">© 2026 Docker Hotel · ทำเพื่อการเรียนรู้</p>
   </footer>
   <script src="main.js"></script>
 </body>

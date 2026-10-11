@@ -51,7 +51,7 @@ function cardHTML(product) {
       </div>
 
       <div class="p-4">
-        <h4 class="font-semibold truncate">${product.name}</h4>
+        <h4 class="text-orange-600 font-bold truncate">${product.name}</h4>
 
         <!-- ดาวรีวิว + จำนวนรีวิว -->
         <div class="flex items-center gap-1.5 text-amber-500 text-sm mt-1">
@@ -85,7 +85,11 @@ function cardHTML(product) {
 //         (3) อัปเดตตัวเลขบนตะกร้า + รายการในตะกร้า
 // ------------------------------------------------------------
 function addToCart(id) {
-  // TODO: เขียนโค้ดตรงนี้
+  const product = allProducts.find((item) => item.id === id);
+
+  cart.push(product);
+  updateCartCount();
+  renderCart();
 }
 
 // ------------------------------------------------------------
@@ -103,13 +107,24 @@ function renderCart() {
   const emptyEl = document.getElementById('cart-empty');
 
   emptyEl.classList.toggle('hidden', cart.length > 0);
-  listEl.innerHTML = cart
-    .map((p) => `<li class="flex justify-between"><span>${p.emoji} ${p.name}</span><span>฿${p.price}</span></li>`)
+  const groupedCart = cart.reduce((items, product) => {
+    const item = items.get(product.id);
+
+    if (item) {
+      item.quantity += 1;
+    } else {
+      items.set(product.id, { product, quantity: 1 });
+    }
+
+    return items;
+  }, new Map());
+
+  listEl.innerHTML = [...groupedCart.values()]
+    .map(({ product, quantity }) => `<li class="flex justify-between"><span>${product.emoji} ${product.name} x${quantity}</span><span>฿${product.price * quantity}</span></li>`)
     .join('');
 
-  // 👇 โจทย์ 6: ยอดรวมราคาสินค้าในตะกร้า ยังค้างที่ ฿0 — คิดยอดรวมแล้วเอาไปแสดงที่ #cart-total
-  //    ใบ้: total = cart.reduce((sum, p) => sum + p.price, 0)  แล้ว
-  //    document.getElementById('cart-total').textContent = '฿' + total;
+  const total = cart.reduce((sum, product) => sum + product.price, 0);
+  document.getElementById('cart-total').textContent = '฿' + total;
 }
 
 // เปิด/ปิด แผงตะกร้า
